@@ -1,0 +1,37 @@
+<div ng-controller="weatherCtrl as vm">
+    <div class="filter">
+        <select class="cs-select cs-skin-rotate"
+                ng-model="vm.filter.weatherCondition"
+                ng-options="option for option in vm.filter.weatherConditions"
+                ng-change="vm.filter.apply(vm.filter.weatherCondition)">
+        </select>
+    </div>
+    
+    <table class="table_blur width100 fixed_table">
+        <colgroup>
+            <col width="10%">
+            <col width="20%">
+            <col width="30%">
+            <col width="20%">
+            <col width="20%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>№</th>
+                <th>Дата</th>
+                <th>Температура, С</th>
+                <th>Давление, hPa</th>
+                <th>Влажность, %</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="weather in vm.weatherList">
+                <td>{{$index+1}}</td>                
+                <td>{{weather.dt | date : "dd.MM.yyyy"}}</td>
+                <td>{{weather.temp.min}} - {{weather.temp.max}}</td>
+                <td>{{weather.pressure | number: 2}}</td>
+                <td>{{weather.humidity}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
